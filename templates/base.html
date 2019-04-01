@@ -1,0 +1,53 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}base.html{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'bootstrap-3.3.7-dist/css/bootstrap.min.css' %}">
+    <script src="{% static 'js/jquery.min.js'%}"></script>
+    <script src="{% static 'bootstrap-3.3.7-dist/js/bootstrap.min.js' %}"></script>
+
+    <style>
+       * {
+            margin: 0;
+            padding: 0;
+        }
+
+
+    </style>
+    
+
+
+</head>
+<body>
+        <!-- 定义导航栏 -->
+    <div class="navbar navbar-default" role='navigation'>
+        <div class="container-fluid">
+                <div class="navbar-header">
+                     <a href="#" class="navbar-brand">潘迪俊的博客</a>
+                     <!-- <buttion type='button' class="navbar-toggle clooapsed" date-target="#navbar-collapse" data-toggle="collapse"></buttion> -->
+                     <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+                     <span class="icon-bar"></span>
+                     <span class="icon-bar"></span>
+                     <span class="icon-bar"></span>
+                </div>
+                <div class="collapse navbar-collapse" id="navbar-collapse">
+                       <ul class="nav navbar-nav">
+                    <li style="display: inline;"><a href="/">首页</a></li>
+                    <li style="display: inline;"><a href="{% url 'blog_list'%}">博客</a></li>
+                    <li style="display: inline;"><a href="#">随笔</a></li>
+                </ul>
+                </div>
+             
+
+        </div>
+    </div>
+
+{% block content %}{% endblock %}
+
+
+</body>
+</html>

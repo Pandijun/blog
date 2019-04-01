@@ -1,12 +1,58 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Document</title>
+    <title>{% block title%}博客列表{%endblock%}</title>
 </head>
 <body>
     
-        <h1>welcome to my blog!</h1>
+{% block content%}
+<!--     <h1>WELCOME TO MY BLOG_LIST</h1>
+    <a href="/">返回首页</a> -->
+  <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-md-8">
+                    <div class="panel panel-default">
+                      <div class="panel-heading"><h3>博客正文</h3></div>
+                      <div class="panel-body">
+                             <ul>
+                                {% for blog in blog_list_all %}
+                                <div>
+                                <li style="list-style-type: none"><h3>{{blog.title}}</h3></li>
+                                <span style="color:#999">分类：{{blog.blog_type}} &nbsp;|&nbsp;</span>
+                                <span style="color:#999">作者：{{blog.author}} &nbsp;|&nbsp;</span>
+                                <span style="color:#999">更新时间：{{blog.last_updated_time}}</span>
+                                <p style="margin-top:1em">{{blog.content|striptags|truncatechars:120}}</p>
+                                </div>
+
+                                {% endfor%}
+                            </ul>
+                      </div>
+                    </div>
+
+            </div>
+           
+    
+            <div class="hidden-xs col-md-4">
+                    <div class="panel panel-default">
+                      <div class="panel-heading"><h4>博客分类</h4></div>
+                      <div class="panel-body">
+                          <ul>
+                           {% for blog_type in blog_type_all%}
+                                <li style="list-style-type: none;">{{blog_type.typename}}</li>
+                           {% endfor%}
+                           </ul>
+                      </div>
+                    </div>      
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
 
 </body>
 </html>
