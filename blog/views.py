@@ -20,3 +20,14 @@ def blog_content(request,blog_id):
     context = {}   
     context['blog'] = blog
     return render(request,'blog_content.html',context)
+
+
+def blog_type(request,blog_with_type):
+    blog_type_all = models.blog_type.objects.all()
+    blog_type_mark = models.blog_type.objects.get(pk=blog_with_type)
+    context = {}
+    context['blog_type_all'] = blog_type_all
+    context['blog_with_type'] = models.Blog.objects.filter(blog_type=blog_type_mark)
+    return render(request,'blog_type.html',context)
+
+
