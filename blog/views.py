@@ -13,4 +13,10 @@ def blog_list(request):
 
 def index(request):
     return render(request,'index.html')
-    
+
+
+def blog_content(request,blog_id):
+    blog = models.Blog.objects.get(id=blog_id)
+    context = {}   
+    context['blog'] = blog
+    return render(request,'blog_content.html',context)

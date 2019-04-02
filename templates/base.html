@@ -16,6 +16,16 @@
             padding: 0;
         }
 
+        .title-bonner{
+            text-align: center;
+            min-height: 257px;
+            position: relative;
+            margin-top: 20px;
+            padding-top: 75px;
+            margin-bottom: 20px;
+            background-color: #4F5893;
+        }
+
 
     </style>
     
@@ -24,7 +34,7 @@
 </head>
 <body>
         <!-- 定义导航栏 -->
-    <div class="navbar navbar-default" role='navigation'>
+    <div class="navbar navbar-default navbar-fixed-top" role='navigation'>
         <div class="container-fluid">
                 <div class="navbar-header">
                      <a href="#" class="navbar-brand">潘迪俊的博客</a>
@@ -45,8 +55,22 @@
 
         </div>
     </div>
+    
+    <div class="title-bonner">
+        
+        <h1 style="color:white">Pandj Blog</h1>
+        <h3 style="color: white">潘迪俊博客，记录我的生活</h3>
+    </div>
 
-{% block content %}{% endblock %}
+
+
+{% block content %}
+
+
+
+
+
+{% endblock %}
 
 
 </body>
