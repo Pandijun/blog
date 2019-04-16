@@ -1,14 +1,26 @@
 from django.shortcuts import render
 from . import models
+from django.core.paginator import Paginator
 
 # Create your views here.
 
 def blog_list(request):
+   
     blog_list_all = models.Blog.objects.all()
+    paginator = Paginator(blog_list_all,1)  #每10页进行分页
+    page_num = request.GET.get("page",1)  #获取页码参数(get请求)
+    page_of_blogs = paginator.get_page(page_num)   
     blog_type_all = models.blog_type.objects.all()
+ 
+    cur_page_num = page_of_blogs.number  #获取当前页、
+    # page_range = [cur_page_num - 2,cur_page_num - 1,cur_page_num,cur_page_num + 1,cur_page_num +2]
+    # page_range = filter(lambda x: 0 < x < paginator.num_pages,range(cur_page_num - 2 ,cur_page_num + 3))
+    page_range = [ x for x in range(cur_page_num - 2,cur_page_num +3) if 0 < x < paginator.num_pages ]
+
     context = {}
-    context['blog_list_all'] = blog_list_all
+    context['blog_list_all'] = page_of_blogs
     context['blog_type_all'] = blog_type_all
+    context['page_range'] = page_range
     return render(request,'blog_list.html',context)
 
 def index(request):

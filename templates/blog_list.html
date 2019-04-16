@@ -19,11 +19,12 @@
   <div class="container">
         <div class="row">
             <div class="col-xs-12 col-md-8">
+                    <!-- 博客正文 -->
                     <div class="panel panel-default">
-                      <div class="panel-heading"><h3>博客正文</h3></div>
+                      <div class="panel-heading"><h3>博客列表(共有{{blog_list_all.paginator.count}}篇文章）</h3></div>
                       <div class="panel-body">
                              <ul>
-                                {% for blog in blog_list_all %}
+                                {% for blog in blog_list_all.object_list %}
                                 <div>
                                 <li style="list-style-type: none"><a href="{% url 'blog_content' blog.pk %}"><h3>{{blog.title}}</a></h3></li>
                                 <span style="color:#999">分类：{{blog.blog_type}} &nbsp;|&nbsp;</span>
@@ -36,6 +37,45 @@
                             </ul>
                       </div>
                     </div>
+                   
+                     <!-- 调用bootstarp之后的分页器  -->
+                    <div aria-label="Page navigation">
+                      <ul class="pagination">
+                        <!-- 上一页 -->
+                        <li>
+                          {% if blog_list_all.has_previous %}
+                            <a href="?page={{ blog_list_all.previous_page_number }}" aria-label="Previous">
+                              <span aria-hidden="true">&laquo;</span>
+                            </a>
+                          {% else %}
+                              <span aria-hidden="true">&laquo;</span>
+                          {% endif %}
+                        </li>
+
+                          <!-- 具体page_num页码 -->
+                         {% for page_num in page_range %}
+                            {% if page_num == blog_list_all.number%}
+                           <!--    <li class="active"><a href="?page={{page_num}}">{{page_num}}</a></li> -->
+                               <li class="active"><span>{{page_num}}</span></li>
+                            {% else %}
+                                <li><a href="?page={{page_num}}">{{page_num}}</a></li>
+                            {% endif %}
+                         {% endfor %}
+                       
+                      <!-- 下一页 -->
+                        <li>
+                          {% if blog_list_all.has_next %}
+                          <a href="?page={{ blog_list_all.next_page_number }}" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                          </a>
+                          {% else %}
+                            <span aria-hidden="true">&raquo;</span>
+                          {% endif %}
+                        </li>
+                      </ul>
+                  </div>
+
+
 
             </div>
            
